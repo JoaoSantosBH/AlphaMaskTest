@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun animateShapeLayer(drawable2: ImageView) {
         val drawable = findViewById<ImageView>(R.id.cardColor)
-        
+
 //        val layerDrawable =
 //            ResourcesCompat.getDrawable(resources, R.drawable.canvas_layer, null) as LayerDrawable?
 //        val drawable :RotateDrawable = layerDrawable?.findDrawableByLayerId(R.id.card) as RotateDrawable
