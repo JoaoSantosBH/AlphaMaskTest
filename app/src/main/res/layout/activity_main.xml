@@ -36,8 +36,6 @@
             app:layout_constraintStart_toStartOf="@+id/container"
             app:layout_constraintTop_toTopOf="@+id/container" />
 
-
     </androidx.constraintlayout.motion.widget.MotionLayout>
-
 
 </androidx.cardview.widget.CardView>

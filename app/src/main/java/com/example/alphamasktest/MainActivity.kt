@@ -10,8 +10,9 @@ import androidx.core.content.ContextCompat
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.RotateDrawable
+import android.graphics.drawable.LayerDrawable
 
 
 import android.util.Log
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun cropAlphaMask() {
         val myImageView = findViewById<ImageView>(R.id.cardColor)
+        val layers = arrayOfNulls<Drawable>(2)
         val canvas = Canvas()
         val paint = Paint()
 
@@ -38,27 +40,20 @@ class MainActivity : AppCompatActivity() {
             Bitmap.createBitmap(cropedImage.width, cropedImage.height, Bitmap.Config.ARGB_8888)
 
         canvas.setBitmap(result)
-        paint.isFilterBitmap = false
+        paint.isFilterBitmap = true
 
         canvas.drawBitmap(cropedImage, 0f, 0f, paint)
+        layers[0] = BitmapDrawable(applicationContext.resources,result)
+
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
         canvas.drawBitmap(mask, 0f, 0f, paint)
 
-        myImageView.setImageBitmap(result)
-        animateShapeLayer(myImageView)
-
-        myImageView.invalidate()
-
-        //ImageView imageView = (ImageView) findViewById(R.id.imageView);
-        //Resources r = getResources();
-        //Drawable[] layers = new Drawable[2];
-        //layers[0] = r.getDrawable(R.drawable.your_background_res);
-        //PulseDrawable pulseDrawable = new PulseDrawable(Color.WHITE);
-        //layers[1] = pulseDrawable;
-        //LayerDrawable layerDrawable = new LayerDrawable(layers);
-        //// This will adjust X & Y of layer, we have to pass layer index (250 pixels from Left and 150 pixels from Right)
-        //layerDrawable.setLayerInset(1, 250, 150, 0, 0);
-        //imageView.setImageDrawable(layerDrawable);
+        layers[1] = BitmapDrawable(applicationContext.resources,result)
+        val layerDrawable = LayerDrawable(layers)
+        myImageView.setImageDrawable(layerDrawable)
+//            myImageView.setImageBitmap(result)
+        animateShapeLayer(layerDrawable)
+//        myImageView.invalidate()
 
     }
 
@@ -74,14 +69,11 @@ class MainActivity : AppCompatActivity() {
         return bitmap
     }
 
-    private fun animateShapeLayer(drawable2: ImageView) {
-        val drawable = findViewById<ImageView>(R.id.cardColor)
+    private fun animateShapeLayer(layerList: LayerDrawable) {
 
-//        val layerDrawable =
-//            ResourcesCompat.getDrawable(resources, R.drawable.canvas_layer, null) as LayerDrawable?
-//        val drawable :RotateDrawable = layerDrawable?.findDrawableByLayerId(R.id.card) as RotateDrawable
-
-        val animate = ObjectAnimator.ofInt(drawable, "level",  0, 10000)
+        val drawable  = layerList.getDrawable(1)
+        val drawable2  = layerList.getDrawable(0)
+        val animate = ObjectAnimator.ofInt(drawable, "level", 0, 10000)
         animate.duration = 5000
         animate.addListener(object : Animator.AnimatorListener {
             override fun onAnimationStart(animator: Animator) {
