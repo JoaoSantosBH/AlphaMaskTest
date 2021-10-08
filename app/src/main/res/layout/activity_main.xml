@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <androidx.constraintlayout.motion.widget.MotionLayout
+        android:id="@+id/main"
+        android:layout_width="94dp"
+        android:layout_height="122dp"
+        android:layout_gravity="center_horizontal"
+        app:layoutDescription="@xml/activity_main_scene"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="@+id/container"
+            app:layout_constraintStart_toStartOf="@+id/container"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:srcCompat="@drawable/illustration"
+            app:tintMode="src_over" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/mask"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.9"
+            android:src="@mipmap/planta_mask"
+            android:tintMode="src_in"
+            app:brightness="1"
+            app:contrast="1"
+            app:layout_constraintEnd_toEndOf="@+id/container"
+            app:layout_constraintStart_toStartOf="@+id/container"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:saturation="0" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="@+id/container"
+            app:layout_constraintStart_toStartOf="@+id/container"
+            app:layout_constraintTop_toTopOf="@+id/container"
+            app:srcCompat="@drawable/external_frame"
+            app:tintMode="src_in" />
+    </androidx.constraintlayout.motion.widget.MotionLayout>
+
+
+</androidx.cardview.widget.CardView>
