@@ -11,22 +11,24 @@
         <OnClick motion:clickAction="transitionToStart" />
         <KeyFrameSet>
 
-            <KeyAttribute
-                android:translationX="0dp"
-                motion:framePosition="0"
-                motion:keyPositionType="parentRelative"
-                motion:motionTarget="@id/mask" />
-            <KeyAttribute
-                android:translationX="40dp"
-                motion:framePosition="100"
-                motion:keyPositionType="parentRelative"
-                motion:motionTarget="@id/mask" />
+<!--            <KeyAttribute-->
+<!--                android:translationX="0dp"-->
+<!--                motion:framePosition="0"-->
+<!--                motion:keyPositionType="parentRelative"-->
+<!--                motion:motionTarget="@id/imageView" />-->
+<!--            <KeyAttribute-->
+<!--                android:translationX="40dp"-->
+<!--                motion:framePosition="100"-->
+<!--                motion:keyPositionType="parentRelative"-->
+<!--                motion:motionTarget="@id/imageView" />-->
 
         </KeyFrameSet>
 
     </Transition>
 
     <ConstraintSet android:id="@+id/start">
+
+
 
 
     </ConstraintSet>
