@@ -10,16 +10,16 @@
         <OnClick motion:clickAction="transitionToStart" />
         <KeyFrameSet>
 
-            <KeyAttribute
-                android:translationX="-20dp"
-                motion:framePosition="0"
-                motion:keyPositionType="parentRelative"
-                motion:motionTarget="@id/cardColor" />
-            <KeyAttribute
-                android:translationX="0dp"
-                motion:framePosition="100"
-                motion:keyPositionType="parentRelative"
-                motion:motionTarget="@id/cardColor" />
+<!--            <KeyAttribute-->
+<!--                android:translationX="-20dp"-->
+<!--                motion:framePosition="0"-->
+<!--                motion:keyPositionType="parentRelative"-->
+<!--                motion:motionTarget="@id/cardColor" />-->
+<!--            <KeyAttribute-->
+<!--                android:translationX="0dp"-->
+<!--                motion:framePosition="100"-->
+<!--                motion:keyPositionType="parentRelative"-->
+<!--                motion:motionTarget="@id/cardColor" />-->
 
         </KeyFrameSet>
 
