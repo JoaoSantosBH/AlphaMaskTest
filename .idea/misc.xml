@@ -14,7 +14,7 @@
         <entry key="app/src/main/res/drawable/illustration.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/illustration_bw.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/drawable/my_mask.xml" value="0.21197916666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.7611336032388664" />
         <entry key="app/src/main/res/layout/masked_item.xml" value="0.1" />
       </map>
     </option>
@@ -28,7 +28,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.33" />
+        <option name="scale" value="0.1" />
       </ProjectState>
     </option>
   </component>

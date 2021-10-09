@@ -5,27 +5,26 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.*
 import android.graphics.Paint.ANTI_ALIAS_FLAG
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
-import android.graphics.drawable.LayerDrawable
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.setBlendMode
 
-class CardView(
-    context: Context?,
-    attrs: AttributeSet?
-) : View(context, attrs) {
+class CardView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0,
+    defStyleRes: Int = 0
+) : View(context, attrs, defStyleAttr, defStyleRes) {
 
     companion object {
         const val PERCENTAGE_VALUE_HOLDER = "percentage"
     }
 
-    private val bgColor = Color.GRAY
-
-    private val paint = Paint(ANTI_ALIAS_FLAG)
+    private var paint = Paint(ANTI_ALIAS_FLAG).apply {
+        isFilterBitmap = false
+        isAntiAlias = true
+    }
 
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
@@ -47,22 +46,23 @@ class CardView(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (width == 0 || height == 0) return
+        invalidate()
         canvas?.let {
             cropAlphaMask(it)
             invalidate()
         }
     }
 
-    private fun cropAlphaMask(canvas: Canvas) {
+    private fun cropAlphaMask(canvas:Canvas) {
         canvas.setBitmap(result)
-        paint.isFilterBitmap = false
-        paint.isAntiAlias = true
+
         canvas.drawBitmap(cropedImage, 0f, 0f, paint)
         paint.xfermode = mode
         canvas.drawBitmap(mask, 0f, 0f, paint)
         paint.xfermode = null
-        canvas.drawBitmap(result, 0f, 0f, paint)
 
+
+        canvas.drawBitmap(result, 0f, 0f, paint)
     }
 
     fun getBitmapFromVectorDrawable(drawableId: Int): Bitmap {
