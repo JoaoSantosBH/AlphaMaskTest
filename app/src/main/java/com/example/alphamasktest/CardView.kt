@@ -9,7 +9,6 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
 
 class CardView @JvmOverloads constructor(
     context: Context,
@@ -30,11 +29,11 @@ class CardView @JvmOverloads constructor(
     private var mCanvas = Canvas()
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
-    private val cropedImage by lazy { getBitmapFromVectorDrawable(R.drawable.illustration) }
-    private val mask by lazy { getBitmapFromVectorDrawable(R.drawable.ic_shape) }
+    private val image by lazy { getBitmapFromDrawable(R.drawable.illustration) }
+    private val mask by lazy { getBitmapFromDrawable(R.drawable.ic_shape) }
 
     init {
-        setLayerType(View.LAYER_TYPE_SOFTWARE, null)
+        setLayerType(LAYER_TYPE_SOFTWARE, null)
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -48,7 +47,7 @@ class CardView @JvmOverloads constructor(
     }
 
     private fun cropAlphaMask(canvas: Canvas) {
-        canvas.drawBitmap(cropedImage, 0f, 0f, paint)
+        canvas.drawBitmap(image, 0f, 0f, paint)
         paint.xfermode = mode
         canvas.drawBitmap(mask, 0f, 0f, paint)
         paint.xfermode = null
@@ -56,14 +55,14 @@ class CardView @JvmOverloads constructor(
 
     private fun animateAlphaMask(canvas: Canvas){
         for (i in 0..currentPercentage){
-            canvas.drawBitmap(cropedImage, 0f, 0f, paint)
+            canvas.drawBitmap(image, 0f, 0f, paint)
             paint.xfermode = mode
             canvas.drawBitmap(mask, currentPercentage.toFloat()+11, 0f, paint)
             paint.xfermode = null
         }
     }
 
-    fun getBitmapFromVectorDrawable(drawableId: Int): Bitmap {
+    fun getBitmapFromDrawable(drawableId: Int): Bitmap {
         val drawable = ContextCompat.getDrawable(context, drawableId)
         val bitmap = Bitmap.createBitmap(
             drawable!!.intrinsicWidth,
