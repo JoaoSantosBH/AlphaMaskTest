@@ -47,11 +47,10 @@ class CardView @JvmOverloads constructor(
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (width == 0 || height == 0) return
-//        invalidate()
         canvas?.let {
             mCanvas = it
             cropAlphaMask(mCanvas)
-//            invalidate()
+            animateAlphaMask(mCanvas)
         }
     }
 
@@ -60,8 +59,16 @@ class CardView @JvmOverloads constructor(
         paint.xfermode = mode
         canvas.drawBitmap(mask, 0f, 0f, paint)
         paint.xfermode = null
-//        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.DST_IN);
 
+    }
+
+    private fun animateAlphaMask(canvas: Canvas){
+        for (i in 0..currentPercentage){
+            canvas.drawBitmap(cropedImage, 0f, 0f, paint)
+            paint.xfermode = mode
+            canvas.drawBitmap(mask, currentPercentage.toFloat(), 0f, paint)
+            paint.xfermode = null
+        }
     }
 
     fun getBitmapFromVectorDrawable(drawableId: Int): Bitmap {
@@ -85,7 +92,6 @@ class CardView @JvmOverloads constructor(
             addUpdateListener {
                 val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
                 currentPercentage = percentage.toInt()
-                mCanvas.translate(percentage,0f)
                 Log.i("TAG", "Animationr " + currentPercentage)
                 invalidate()
             }
