@@ -11,7 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val card = findViewById<CardView>(R.id.cardView)
-        card.animateProgress()
+        card.setOnClickListener {
+            card.animateProgress()
+        }
     }
 
 

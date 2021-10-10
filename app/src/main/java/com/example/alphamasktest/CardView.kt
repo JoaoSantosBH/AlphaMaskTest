@@ -26,6 +26,7 @@ class CardView @JvmOverloads constructor(
         isAntiAlias = true
     }
 
+    private var mCanvas = Canvas()
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
     private val cropedImage by lazy { getBitmapFromVectorDrawable(R.drawable.illustration) }
@@ -48,20 +49,19 @@ class CardView @JvmOverloads constructor(
         if (width == 0 || height == 0) return
 //        invalidate()
         canvas?.let {
-            cropAlphaMask(it)
-            invalidate()
+            mCanvas = it
+            cropAlphaMask(mCanvas)
+//            invalidate()
         }
     }
 
     private fun cropAlphaMask(canvas: Canvas) {
-//        canvas.setBitmap(result)
-        canvas.drawBitmap(cropedImage, 0f,0f, paint)
+        canvas.drawBitmap(cropedImage, 0f, 0f, paint)
         paint.xfermode = mode
-        canvas.drawBitmap(mask,0f,0f, paint)
-
+        canvas.drawBitmap(mask, 0f, 0f, paint)
         paint.xfermode = null
-//        canvas.drawBitmap(result, 0f, 0f, paint)
-//        canvas.restore()
+//        canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.DST_IN);
+
     }
 
     fun getBitmapFromVectorDrawable(drawableId: Int): Bitmap {
@@ -77,13 +77,15 @@ class CardView @JvmOverloads constructor(
     }
 
     fun animateProgress() {
-        val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, 100f)
+
+        val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, 60f)
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
             duration = 2000
             addUpdateListener {
                 val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
                 currentPercentage = percentage.toInt()
+                mCanvas.translate(percentage,0f)
                 Log.i("TAG", "Animationr " + currentPercentage)
                 invalidate()
             }
