@@ -10,7 +10,7 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 
-class CardView @JvmOverloads constructor(
+class CanvasView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0,

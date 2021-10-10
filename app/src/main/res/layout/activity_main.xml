@@ -25,7 +25,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/illustration" />
 
-        <com.example.alphamasktest.CardView
+        <com.example.alphamasktest.CanvasView
             android:id="@+id/cardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
