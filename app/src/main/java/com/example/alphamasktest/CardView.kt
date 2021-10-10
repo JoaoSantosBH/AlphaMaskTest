@@ -31,7 +31,7 @@ class CardView @JvmOverloads constructor(
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
     private val cropedImage by lazy { getBitmapFromVectorDrawable(R.drawable.illustration) }
-    private val mask by lazy { getBitmapFromVectorDrawable(R.drawable.ic_shape2) }
+    private val mask by lazy { getBitmapFromVectorDrawable(R.drawable.ic_shape) }
 
     init {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
@@ -58,7 +58,7 @@ class CardView @JvmOverloads constructor(
         for (i in 0..currentPercentage){
             canvas.drawBitmap(cropedImage, 0f, 0f, paint)
             paint.xfermode = mode
-            canvas.drawBitmap(mask, currentPercentage.toFloat()+10, 0f, paint)
+            canvas.drawBitmap(mask, currentPercentage.toFloat()+11, 0f, paint)
             paint.xfermode = null
         }
     }

@@ -6,6 +6,7 @@
         <entry key="../../../../layout/custom_preview.xml" value="0.17135416666666667" />
         <entry key="app/src/main/res/drawable/canvas.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/canvas_layer.xml" value="0.14814814814814814" />
+        <entry key="app/src/main/res/drawable/external_frame.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/filter_shape.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_group_907mask.xml" value="0.1925925925925926" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.21197916666666666" />
@@ -15,7 +16,7 @@
         <entry key="app/src/main/res/drawable/illustration.xml" value="0.25" />
         <entry key="app/src/main/res/drawable/illustration_bw.xml" value="0.18177083333333333" />
         <entry key="app/src/main/res/drawable/my_mask.xml" value="0.21197916666666666" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.7611336032388664" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14361702127659576" />
         <entry key="app/src/main/res/layout/masked_item.xml" value="0.1" />
       </map>
     </option>

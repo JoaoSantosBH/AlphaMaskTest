@@ -1,7 +1,0 @@
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="94dp"
-    android:height="122dp"
-    android:viewportWidth="94"
-    android:viewportHeight="122">
-<solid android:color="#85070505"/>
-</shape>
