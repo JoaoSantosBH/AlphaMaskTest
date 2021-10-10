@@ -8,6 +8,7 @@ import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
 class CanvasView @JvmOverloads constructor(
@@ -29,7 +30,7 @@ class CanvasView @JvmOverloads constructor(
     private var mCanvas = Canvas()
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
-    private val image by lazy { getBitmapFromDrawable(R.drawable.illustration) }
+    private lateinit var image :Bitmap
     private val mask by lazy { getBitmapFromDrawable(R.drawable.ic_shape) }
 
     init {
@@ -87,5 +88,8 @@ class CanvasView @JvmOverloads constructor(
             }
         }
         animator.start()
+    }
+    fun setImageBitmap(bitmap: Bitmap){
+        image = bitmap
     }
 }
