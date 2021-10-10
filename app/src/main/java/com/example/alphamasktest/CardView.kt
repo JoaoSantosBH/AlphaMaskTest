@@ -39,30 +39,29 @@ class CardView @JvmOverloads constructor(
     }
 
     init {
-        setLayerType(View.LAYER_TYPE_SOFTWARE, paint)
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null)
     }
 
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         if (width == 0 || height == 0) return
-        invalidate()
+//        invalidate()
         canvas?.let {
             cropAlphaMask(it)
             invalidate()
         }
     }
 
-    private fun cropAlphaMask(canvas:Canvas) {
-        canvas.setBitmap(result)
-
-        canvas.drawBitmap(cropedImage, 0f, 0f, paint)
+    private fun cropAlphaMask(canvas: Canvas) {
+//        canvas.setBitmap(result)
+        canvas.drawBitmap(cropedImage, 0f,0f, paint)
         paint.xfermode = mode
-        canvas.drawBitmap(mask, 0f, 0f, paint)
+        canvas.drawBitmap(mask,0f,0f, paint)
+
         paint.xfermode = null
-
-
-        canvas.drawBitmap(result, 0f, 0f, paint)
+//        canvas.drawBitmap(result, 0f, 0f, paint)
+//        canvas.restore()
     }
 
     fun getBitmapFromVectorDrawable(drawableId: Int): Bitmap {
@@ -78,10 +77,10 @@ class CardView @JvmOverloads constructor(
     }
 
     fun animateProgress() {
-        val valuesHolder = PropertyValuesHolder.ofFloat("percentage", 0f, 100f)
+        val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, 100f)
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
-            duration = 3000
+            duration = 2000
             addUpdateListener {
                 val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
                 currentPercentage = percentage.toInt()
