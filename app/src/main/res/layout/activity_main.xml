@@ -45,13 +45,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.utils.widget.ImageFilterView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/bg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:saturation="0"
             app:layout_constraintTop_toTopOf="parent"
              />
 
