@@ -9,6 +9,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 
 class CardView @JvmOverloads constructor(
     context: Context,
@@ -30,19 +31,11 @@ class CardView @JvmOverloads constructor(
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
     private val cropedImage by lazy { getBitmapFromVectorDrawable(R.drawable.illustration) }
-    private val mask by lazy { getBitmapFromVectorDrawable(R.drawable.ic_shape) }
-    private val result by lazy {
-        Bitmap.createBitmap(
-            cropedImage.width,
-            cropedImage.height,
-            Bitmap.Config.ARGB_8888
-        )
-    }
+    private val mask by lazy { getBitmapFromVectorDrawable(R.drawable.ic_shape2) }
 
     init {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
     }
-
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
@@ -59,14 +52,13 @@ class CardView @JvmOverloads constructor(
         paint.xfermode = mode
         canvas.drawBitmap(mask, 0f, 0f, paint)
         paint.xfermode = null
-
     }
 
     private fun animateAlphaMask(canvas: Canvas){
         for (i in 0..currentPercentage){
             canvas.drawBitmap(cropedImage, 0f, 0f, paint)
             paint.xfermode = mode
-            canvas.drawBitmap(mask, currentPercentage.toFloat(), 0f, paint)
+            canvas.drawBitmap(mask, currentPercentage.toFloat()+10, 0f, paint)
             paint.xfermode = null
         }
     }
@@ -84,7 +76,6 @@ class CardView @JvmOverloads constructor(
     }
 
     fun animateProgress() {
-
         val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, 60f)
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
@@ -92,7 +83,7 @@ class CardView @JvmOverloads constructor(
             addUpdateListener {
                 val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
                 currentPercentage = percentage.toInt()
-                Log.i("TAG", "Animationr " + currentPercentage)
+                Log.i("TAG", "Animation r " + currentPercentage)
                 invalidate()
             }
         }
