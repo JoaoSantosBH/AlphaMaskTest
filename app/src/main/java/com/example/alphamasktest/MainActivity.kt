@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val canvasLayout = findViewById<CanvasView>(R.id.cardView)
-        val bitmapFromLayout = findViewById<ConstraintLayout>(R.id.makeImage)
+        val bitmapFromLayout = findViewById<ConstraintLayout>(R.id.layoutToPrint)
         val blackAndWhiteBitmap = getBitMapFromView(bitmapFromLayout, applicationContext)
         val bgBlackAndWhite = findViewById<ImageFilterView>(R.id.bg)
 

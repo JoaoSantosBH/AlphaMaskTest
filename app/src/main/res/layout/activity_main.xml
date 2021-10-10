@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/makeImage"
+            android:id="@+id/layoutToPrint"
             android:visibility="visible"
             android:layout_width="94dp"
             android:layout_height="122dp"
