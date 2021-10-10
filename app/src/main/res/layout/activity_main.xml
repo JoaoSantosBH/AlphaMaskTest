@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:text="NIVEL 7"
-                android:textColor="@color/purple_700"
+                android:textColor="@color/teal_700"
                 app:layout_constraintBottom_toBottomOf="@+id/flower"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

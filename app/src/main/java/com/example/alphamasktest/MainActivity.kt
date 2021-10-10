@@ -16,9 +16,11 @@ class MainActivity : AppCompatActivity() {
         val canvasLayout = findViewById<CanvasView>(R.id.cardView)
         val bitmapFromLayout = findViewById<ConstraintLayout>(R.id.makeImage)
         val blackAndWhiteBitmap = getBitMapFromView(bitmapFromLayout, applicationContext)
+        val bgBlackAndWhite = findViewById<ImageFilterView>(R.id.bg)
+
         canvasLayout.setImageBitmap(blackAndWhiteBitmap)
         val bw = convertToBW(blackAndWhiteBitmap)
-        val bgBlackAndWhite = findViewById<ImageFilterView>(R.id.bg)
+
         bgBlackAndWhite.setImageBitmap(bw)
         canvasLayout.setOnClickListener {
             canvasLayout.animateProgress()
