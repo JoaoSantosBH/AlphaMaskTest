@@ -82,7 +82,7 @@ class CardView @JvmOverloads constructor(
             addUpdateListener {
                 val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
                 currentPercentage = percentage.toInt()
-                Log.i("TAG", "Animation r " + currentPercentage)
+                Log.i("TAG", "Animation current position " + currentPercentage)
                 invalidate()
             }
         }
