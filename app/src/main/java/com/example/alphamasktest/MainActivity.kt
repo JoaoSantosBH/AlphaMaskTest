@@ -17,11 +17,12 @@ class MainActivity : AppCompatActivity() {
         val bitmapFromLayout = findViewById<ConstraintLayout>(R.id.layoutToPrint)
         val blackAndWhiteBitmap = getBitMapFromView(bitmapFromLayout, applicationContext)
         val bgBlackAndWhite = findViewById<AppCompatImageView>(R.id.bg)
-
-        canvasLayout.setImageBitmap(blackAndWhiteBitmap)
         val bw = convertToBW(blackAndWhiteBitmap)
 
+        canvasLayout.setImageBitmap(blackAndWhiteBitmap)
+        canvasLayout.setLevel(60f)
         bgBlackAndWhite.setImageBitmap(bw)
+
         canvasLayout.setOnClickListener {
             canvasLayout.animateProgress()
         }

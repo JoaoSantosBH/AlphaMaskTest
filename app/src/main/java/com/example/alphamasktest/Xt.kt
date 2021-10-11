@@ -7,7 +7,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 
 fun convertToBW(original: Bitmap): Bitmap {
     val grayscale = Bitmap.createBitmap(
-        original.getWidth(), original.getHeight(),
+        original.width, original.height,
         Bitmap.Config.ARGB_8888
     )
     val c = Canvas(grayscale)
@@ -20,6 +20,7 @@ fun convertToBW(original: Bitmap): Bitmap {
     c.setBitmap(null)
     return grayscale
 }
+
 fun getBitMapFromView(view: View, applicationContext: Context): Bitmap {
 
     view.layoutParams = ConstraintLayout.LayoutParams(

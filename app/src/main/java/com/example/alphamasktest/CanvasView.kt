@@ -6,9 +6,7 @@ import android.content.Context
 import android.graphics.*
 import android.graphics.Paint.ANTI_ALIAS_FLAG
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 
 class CanvasView @JvmOverloads constructor(
@@ -27,6 +25,7 @@ class CanvasView @JvmOverloads constructor(
         isAntiAlias = true
     }
 
+    private var animationLevel = 0f
     private var mCanvas = Canvas()
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
@@ -76,14 +75,13 @@ class CanvasView @JvmOverloads constructor(
     }
 
     fun animateProgress() {
-        val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, 60f)
+        val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, animationLevel)
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
             duration = 2000
             addUpdateListener {
                 val percentage = it.getAnimatedValue(PERCENTAGE_VALUE_HOLDER) as Float
                 currentPercentage = percentage.toInt()
-                Log.i("TAG", "Animation current position " + currentPercentage)
                 invalidate()
             }
         }
@@ -92,4 +90,9 @@ class CanvasView @JvmOverloads constructor(
     fun setImageBitmap(bitmap: Bitmap){
         image = bitmap
     }
+
+    fun setLevel(level: Float) {
+        animationLevel = level
+    }
+
 }
