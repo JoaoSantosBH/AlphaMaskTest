@@ -20,7 +20,7 @@ fun getBitmapFromDrawable(context: Context, drawableId: Int): Bitmap {
     return bitmap
 }
 
-fun Float.convertDpToPixels(): Int {
+fun Float.convertToPixels(): Int {
     return TypedValue.applyDimension(
         TypedValue.COMPLEX_UNIT_DIP,
         this, Resources.getSystem().displayMetrics

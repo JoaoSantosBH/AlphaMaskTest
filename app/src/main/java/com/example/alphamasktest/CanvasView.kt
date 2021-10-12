@@ -61,7 +61,7 @@ class CanvasView @JvmOverloads constructor(
     }
 
     fun animateProgress(dps: Float) {
-        val animationRate = dps.convertDpToPixels()
+        val animationRate = dps.convertToPixels()
         val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, animationRate.toFloat())
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
