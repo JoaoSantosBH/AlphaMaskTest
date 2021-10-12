@@ -13,18 +13,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val canvasLayout = findViewById<CanvasView>(R.id.cardView)
-        val bitmapFromLayout = findViewById<ConstraintLayout>(R.id.layoutToPrint)
-        val blackAndWhiteBitmap = getBitMapFromView(bitmapFromLayout, applicationContext)
+        val canvasLayout = findViewById<CanvasView>(R.id.canvasView)
+        val viewToCapture = findViewById<ConstraintLayout>(R.id.layoutToPrint)
+        val bitmapOriginal = getBitMapFromView(viewToCapture, 200,172)
         val bgBlackAndWhite = findViewById<AppCompatImageView>(R.id.bg)
-        val bw = convertToBW(blackAndWhiteBitmap)
+        val blackAndWhiteBitmap = convertToBW(bitmapOriginal)
 
-        canvasLayout.setImageBitmap(blackAndWhiteBitmap)
-        canvasLayout.setLevel(60f)
-        bgBlackAndWhite.setImageBitmap(bw)
+        canvasLayout.setImageBitmap(bitmapOriginal)
+        bgBlackAndWhite.setImageBitmap(blackAndWhiteBitmap)
 
         canvasLayout.setOnClickListener {
-            canvasLayout.animateProgress()
+            canvasLayout.animateProgress(200)
         }
     }
 

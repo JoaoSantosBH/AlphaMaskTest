@@ -7,9 +7,10 @@
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
-        android:layout_width="94dp"
-        android:layout_height="122dp"
+        android:id="@+id/container"
+        android:layout_marginTop="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -17,29 +18,30 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutToPrint"
-            android:visibility="visible"
-            android:layout_width="94dp"
-            android:layout_height="122dp"
+            android:layout_width="200dp"
+            android:layout_height="172dp"
+            android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/flower"
+                android:id="@+id/robot"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/illustration" />
+                app:srcCompat="@drawable/ic_bandro" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:text="NIVEL 7"
-                android:textColor="@color/teal_700"
-                app:layout_constraintBottom_toBottomOf="@+id/flower"
+                android:text="Bandro"
+                android:textSize="18sp"
+                android:textColor="@color/purple_200"
+                app:layout_constraintBottom_toBottomOf="@+id/robot"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -47,17 +49,16 @@
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/bg"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="200dp"
+            android:layout_height="172dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-             />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.example.alphamasktest.CanvasView
-            android:id="@+id/cardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:id="@+id/canvasView"
+            android:layout_width="200dp"
+            android:layout_height="172dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>

@@ -26,11 +26,11 @@ class CanvasView @JvmOverloads constructor(
     }
 
     private var animationLevel = 0f
-    private var mCanvas = Canvas()
+    private var canvasRobot = Canvas()
     private val mode = PorterDuffXfermode(PorterDuff.Mode.DST_IN)
     private var currentPercentage = 0
     private lateinit var image :Bitmap
-    private val mask by lazy { getBitmapFromDrawable(R.drawable.ic_shape) }
+    private val mask by lazy { getBitmapFromDrawable(R.drawable.ic_path_tv) }
 
     init {
         setLayerType(LAYER_TYPE_SOFTWARE, null)
@@ -40,9 +40,9 @@ class CanvasView @JvmOverloads constructor(
         super.onDraw(canvas)
         if (width == 0 || height == 0) return
         canvas?.let {
-            mCanvas = it
-            cropAlphaMask(mCanvas)
-            animateAlphaMask(mCanvas)
+            canvasRobot = it
+            cropAlphaMask(canvasRobot)
+            animateAlphaMask(canvasRobot)
         }
     }
 
@@ -57,7 +57,7 @@ class CanvasView @JvmOverloads constructor(
         for (i in 0..currentPercentage){
             canvas.drawBitmap(image, 0f, 0f, paint)
             paint.xfermode = mode
-            canvas.drawBitmap(mask, currentPercentage.toFloat()+11, 0f, paint)
+            canvas.drawBitmap(mask, currentPercentage.toFloat(), 0f, paint)
             paint.xfermode = null
         }
     }
@@ -74,8 +74,8 @@ class CanvasView @JvmOverloads constructor(
         return bitmap
     }
 
-    fun animateProgress() {
-        val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, animationLevel)
+    fun animateProgress(dps: Int) {
+        val valuesHolder = PropertyValuesHolder.ofFloat(PERCENTAGE_VALUE_HOLDER, 0f, convertDpToPixels(dps).toFloat())
         val animator = ValueAnimator().apply {
             setValues(valuesHolder)
             duration = 2000
@@ -89,10 +89,6 @@ class CanvasView @JvmOverloads constructor(
     }
     fun setImageBitmap(bitmap: Bitmap){
         image = bitmap
-    }
-
-    fun setLevel(level: Float) {
-        animationLevel = level
     }
 
 }

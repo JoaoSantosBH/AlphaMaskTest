@@ -1,9 +1,11 @@
 package com.example.alphamasktest
 
-import android.content.Context
+import android.content.res.Resources
 import android.graphics.*
+import android.util.TypedValue
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import kotlin.math.roundToInt
 
 fun convertToBW(original: Bitmap): Bitmap {
     val grayscale = Bitmap.createBitmap(
@@ -21,16 +23,15 @@ fun convertToBW(original: Bitmap): Bitmap {
     return grayscale
 }
 
-fun getBitMapFromView(view: View, applicationContext: Context): Bitmap {
+fun getBitMapFromView(view: View, width: Int, height: Int): Bitmap {
 
     view.layoutParams = ConstraintLayout.LayoutParams(
         ConstraintLayout.LayoutParams.WRAP_CONTENT,
         ConstraintLayout.LayoutParams.WRAP_CONTENT
     )
-    val dm = applicationContext.resources.displayMetrics
     view.measure(
-        View.MeasureSpec.makeMeasureSpec(141, View.MeasureSpec.EXACTLY),
-        View.MeasureSpec.makeMeasureSpec(183, View.MeasureSpec.EXACTLY)
+        View.MeasureSpec.makeMeasureSpec(convertDpToPixels(width), View.MeasureSpec.EXACTLY),
+        View.MeasureSpec.makeMeasureSpec(convertDpToPixels(height), View.MeasureSpec.EXACTLY)
     )
     view.layout(0, 0, view.measuredWidth, view.measuredHeight)
     val bitmap = Bitmap.createBitmap(
@@ -42,4 +43,11 @@ fun getBitMapFromView(view: View, applicationContext: Context): Bitmap {
     view.layout(view.left, view.top, view.right, view.bottom)
     view.draw(canvas)
     return bitmap
+}
+
+fun convertDpToPixels(dp: Int): Int {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        dp.toFloat(), Resources.getSystem().displayMetrics
+    ).roundToInt()
 }
