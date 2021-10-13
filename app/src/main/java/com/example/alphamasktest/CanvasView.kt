@@ -20,7 +20,7 @@ class CanvasView @JvmOverloads constructor(
     }
 
     private var paint = Paint(ANTI_ALIAS_FLAG).apply {
-        isFilterBitmap = false
+        isFilterBitmap = true
         isAntiAlias = true
     }
 
